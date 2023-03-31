@@ -1,5 +1,6 @@
 from tkinter import *
 import datetime
+from time import time
 
 root = Tk()
 
@@ -12,8 +13,10 @@ h = 0
 runnning = False
 
 def counter():
-    global h,m,s
+    global h,m,s, begin, end
     if running:
+
+        begin = time()
         s += 1
         if s == 60:
             s = s % 60
@@ -23,7 +26,8 @@ def counter():
             h += 1
         disp = datetime.time(h, m, s)
         display.config(text=disp)
-    display.after(1000, counter)
+        end = time()
+    display.after(round(1000-(end - begin)*1000), counter)
 
 def start():
     global running
@@ -38,10 +42,11 @@ def stop():
 display = Label(root)
 display.pack(anchor='center')
 
-strt = Button(root, text='Start', command=start)
-strt.pack()
+start = Button(root, text='Start', command=start)
+start.pack()
 
 stop = Button(root, text='Stop', command=stop)
 stop.pack()
 
 root.mainloop()
+
