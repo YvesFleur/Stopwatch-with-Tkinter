@@ -29,7 +29,7 @@ def counter():
         end = time()    #time in second after executing values of s, m, h
         time_taken = end - begin    #duration for executing values of s, m, h
         
-    #to make sure total is 1000ms
+    #to make sure total time is 1000ms
     display.after(round(1000-time_taken*1000), counter) 
     
 def start():
